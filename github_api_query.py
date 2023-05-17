@@ -1,8 +1,8 @@
 import requests
 
 url = 'https://api.github.com/graphql'
-json = { 'query' : '{ viewer { repositories(first: 30) { totalCount pageInfo { hasNextPage endCursor } edges { node { name } } } } }' }
-api_token = "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"
+json = { 'query' : '{search(query: "LLM", type: REPOSITORY, first: 10) {edges {node {... on Repository { name description url stargazerCount forkCount}}}}}' }
+api_token = "your api token"
 headers = {'Authorization': 'token %s' % api_token}
 
 r = requests.post(url=url, json=json, headers=headers)
