@@ -6,7 +6,7 @@ def get_access_token():
     return access_token
 
 url = 'https://api.github.com/graphql'
-json = { 'query' : '{search(query: "LLM", type: REPOSITORY, first: 10) {edges {node {... on Repository { name description url stargazerCount forkCount}}}}}' }
+json = { 'query' : '{search(query: "LLM sort:stars-desc", type: REPOSITORY, first: 10) {edges {node {... on Repository { name description url stargazers {stars: totalCount} forkCount}}}}}' }
 api_token = get_access_token()
 headers = {'Authorization': 'token %s' % api_token}
 
